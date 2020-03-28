@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <meta name="applicable-device" content="mobile">
+    <meta name="format-detection" content="telephone=no">
+    <title>{$find.title}_{$sys.webname}</title>
+    <meta name="keywords" content="{$find.keywords}" />
+    <meta name="description" content="{$find.info}" />
+    <link href="/static/mobile/css/common.css" rel="stylesheet">
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body class="mhome">
+{include file="common/header"}
+<style type="text/css">
+    .time
+    {
+        text-align: center;
+        color: #999;
+        padding-bottom: 0.5rem;
+    }
+    .content img
+    {
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+<div class="news">
+    <div class="news-tit">
+        <h3><a href="//{$sys.murl}/kuaixun"><i class="ico-bar-cat"></i>快讯</a></h3>
+    </div>
+    <div class="news-content">
+        <div class="title">
+            <h2>{$find.title}</h2>
+            <p class="time" style=" text-align:left; padding-left:10px; display:inline-block;">{$find['pubtime']|date="Y-m-d"}</p>
+            <div class="fr article-share ovf" style="display:inline-block; margin-top:-0.4rem;"> <span class="fl" style="margin-top:4px;">分享到：</span>
+                <div class="bdsharebuttonbox fl"><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a> <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a> <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a> </div>
+                <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <p>{$find.info}</p>
+    </div>
+</div>
+{include file="common/footer"}
+</body>
+</html>

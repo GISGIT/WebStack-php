@@ -1,0 +1,16 @@
+<div class="header-top">
+    <h1 class="logo"> <a href="//{$sys.weburl}"><img src="{$sys.logourl}" alt="{$sys.webname}" /></a> </h1>
+    <p class="hinfo">{$sys.web_sort}</p>
+</div>
+<aside id="navBox" class="navbox fl" style="overflow:hidden;">
+    <div id="gdt" style="overflow: auto;width: 230px;height: 100%;">
+    <nav>
+        <ul class="navmain" id="navMenu">
+            <li {if condition="$Request.param.id eq ''"}class="active"{/if}><a href="/"><span>网站首页</span></a></li>
+            {volist name="cateList" id="vo"}
+            <li {if condition="$vo.id eq $topid"}class="active"{/if}><a href="/category/{$vo.id}.html"><span>{$vo.name}</span></a></li>
+            {/volist}
+        </ul>
+    </nav>
+    </div>
+</aside>

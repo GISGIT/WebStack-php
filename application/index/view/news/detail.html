@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{$find.title}_{$sys.webname}</title>
+    <meta name="keywords" content="{$find.keywords}" />
+    <meta name="description" content="{$find.desc}" />
+    <link href="/static/css/common.css" rel="stylesheet">
+    <script src="/static/js/jquery.js"></script>
+    <style type="text/css">
+        .time
+        {
+            text-align: center;
+            color: #999;
+            padding-bottom: 5px;
+        }
+        .alist
+        {
+            width: 970px;
+        }
+        .layout .side .inner {
+            margin: 0 24px 24px 0;
+        }
+        .news-con img
+        {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+{include file="common/cheader"}
+<section class="main">
+    <section class="layout">
+        <h2><i class="ico-bar-vertical"></i><a href="/news">资讯</a></h2>
+        <div class="alist fl" style="background: #fff;">
+            <div class="news-tit">
+                <h2>{$find.title}</h2>
+                <p class="time">{$find['pubtime']|date="Y-m-d H:i:s"}</p>
+            </div>
+            <div class="news-con">
+                {$find.content|raw}
+            </div>
+        </div>
+        <div class="side">
+            <div class="inner">
+                <h3><i class="ico ico-hot"></i> 热门推荐</h3>
+                <ul class="hotarticle">
+                    {volist name="hotList" id="vo"}
+                    <li> <a target="_blank" href="/news/{$vo.id}.html"> <img src="{$vo.image}" onerror="this.src='/static/images/nopic.jpg'">
+                        <p>{$vo.title}</p>
+                    </a> </li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+    </section>
+</section>
+{include file="common/footer"}
+</body>
+</html>

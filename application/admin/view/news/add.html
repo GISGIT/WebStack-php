@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+{include file="common/head"}
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">资讯管理</a>
+        <a>
+          <cite>添加资讯</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <form action="" method="post" class="layui-form layui-form-pane">
+        <div class="layui-form-item">
+            <label for="title" class="layui-form-label">
+                <span class="x-red">*</span>资讯标题
+            </label>
+            <div class="layui-input-block">
+                <input type="text" id="title" name="title" required="" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                资讯图片
+            </label>
+            <div class="layui-input-inline">
+                <input id="imageinput" type="text" name="image" class="layui-input">
+            </div>
+            <div class="col-sm-10">
+                <div id="imageuploader">
+                    <!--用来存放item-->
+                    <div id="imagePicker">选择图片</div>
+                </div>
+            </div>
+        </div>
+        <div id="imageList" class="layui-form-item" style="display: none">
+            <label class="layui-form-label">
+                图片展示
+            </label>
+            <div class="layui-input-block">
+                <div class="layui-input-block">
+                    <div  class="uploader-list" style="overflow:hidden;"><div class="file-item thumbnail col-sm-2"><img id="imageListPic" style="max-width: 100px;max-height: 100px;"></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">显示状态</label>
+            <div class="layui-input-block">
+                <input type="radio" name="isshow" value="1" title="显示" checked="">
+                <input type="radio" name="isshow" value="0" title="不显示">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">热门推荐</label>
+            <div class="layui-input-block">
+                <input type="radio" name="isRec" value="1" title="推荐">
+                <input type="radio" name="isRec" value="0" title="不推荐" checked="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="title" class="layui-form-label">
+                资讯关键词
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="keywords" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label for="desc" class="layui-form-label">
+                简介
+            </label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" id="desc" name="desc" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">
+                快讯内容
+            </label>
+            <div class="layui-input-text">
+                <script id="container" name="content" type="text/plain"></script>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn" lay-submit="" lay-filter="add">添加</button>
+        </div>
+    </form>
+</div>
+</body>
+<script type="text/javascript" src="/static/vendor/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="/static/vendor/ueditor/ueditor.all.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/vendor/uploader/webuploader.css" />
+<script type="text/javascript" src="/static/vendor/uploader/webuploader.js"></script>
+<script>
+    $(function () {
+        var uploader = WebUploader.create({
+            auto: true,
+            swf: '/static/vendor/uploader/Uploader.swf',
+            server: '{:url('upload/image')}',
+            pick: '#imagePicker',
+            accept: {
+            title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+        },
+        fileNumLimit: 500,
+            duplicate:true
+    });
+        uploader.on( 'uploadSuccess', function( file, response ) {
+            var imgurl = response.imgurl;
+            $("#imageList").show();
+            $("#imageListPic").attr("src", imgurl);
+            $("#imageinput").val(imgurl);
+        });
+    })
+</script>
+<script>
+    var ue = UE.getEditor('container', {
+        autoHeight: false,
+        autoFloatEnabled:false,
+    });
+</script>
+</html>

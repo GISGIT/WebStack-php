@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+{include file="common/head"}
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">网站设置</a>
+        <a>
+          <cite>系统设置</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <form action="" method="post" class="layui-form layui-form-pane">
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>网站名称
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="webname" required="" lay-verify="required" autocomplete="off" class="layui-input" value="{$sys.webname}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                电脑LOGO
+            </label>
+            <div class="layui-input-inline">
+                <input id="imageinput" type="text" name="logourl" class="layui-input" value="{$sys.logourl}">
+            </div>
+            <div id="imageuploader" style="display: inline-block;position: relative">
+                <!--用来存放item-->
+                <div id="imagePicker">选择图片</div>
+            </div>
+        </div>
+        <div id="imageList" class="layui-form-item">
+            <label class="layui-form-label">
+                图片展示
+            </label>
+            <div class="layui-input-block">
+                <div class="layui-input-block">
+                    <div  class="uploader-list" style="overflow:hidden;"><div class="file-item thumbnail col-sm-2"><img id="imageListPic" style="max-width: 100px;max-height: 100px;background:#eee;" src="{$sys.logourl}"></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                手机LOGO
+            </label>
+            <div class="layui-input-inline">
+                <input id="bgimageinput" type="text" name="mlogourl" class="layui-input" value="{$sys.mlogourl}">
+            </div>
+            <div id="bgimageuploader" style="display: inline-block;position: relative">
+                <!--用来存放item-->
+                <div id="bgimagePicker">选择图片</div>
+            </div>
+        </div>
+        <div id="bgimageList" class="layui-form-item">
+            <label class="layui-form-label">
+                LOGO展示
+            </label>
+            <div class="layui-input-block">
+                <div class="layui-input-block">
+                    <div  class="uploader-list" style="overflow:hidden;"><div class="file-item thumbnail col-sm-2"><img id="bgimageListPic" style="max-width: 100px;max-height: 100px;background:#eee;" src="{$sys.mlogourl}"></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                网站简介
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="web_sort" autocomplete="off" class="layui-input" value="{$sys.web_sort}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                热搜词
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="hotkey" autocomplete="off" class="layui-input" value="{$sys.hotkey}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>PC端网址
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="weburl" required="" lay-verify="required" autocomplete="off" class="layui-input" value="{$sys.weburl}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>手机端网址
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="murl" required="" lay-verify="required" autocomplete="off" class="layui-input" value="{$sys.murl}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                手机端版权
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="mbanquan" autocomplete="off" class="layui-input" value="{$sys.mbanquan}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn" lay-submit="" lay-filter="add">修改</button>
+        </div>
+    </form>
+</div>
+<link rel="stylesheet" type="text/css" href="/static/vendor/uploader/webuploader.css" />
+<script type="text/javascript" src="/static/vendor/uploader/webuploader.js"></script>
+<script>
+    $(function () {
+        var uploader = WebUploader.create({
+            auto: true,
+            swf: '/static/vendor/uploader/Uploader.swf',
+            server: '{:url('upload/image')}',
+            pick: '#imagePicker',
+            accept: {
+            title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+        },
+        fileNumLimit: 500,
+            duplicate:true
+    });
+        uploader.on( 'uploadSuccess', function( file, response ) {
+            var imgurl = response.imgurl;
+            $("#imageListPic").attr("src", imgurl);
+            $("#imageinput").val(imgurl);
+        });
+    })
+</script>
+<script>
+    $(function () {
+        var uploader = WebUploader.create({
+            auto: true,
+            swf: '/static/vendor/uploader/Uploader.swf',
+            server: '{:url('upload/image')}',
+            pick: '#bgimagePicker',
+            accept: {
+            title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+        },
+        fileNumLimit: 500,
+            duplicate:true
+    });
+        uploader.on( 'uploadSuccess', function( file, response ) {
+            var imgurl = response.imgurl;
+            $("#bgimageListPic").attr("src", imgurl);
+            $("#bgimageinput").val(imgurl);
+        });
+    })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+{include file="common/head"}
+<body>
+<div class="x-body">
+    <form action="" method="post" class="layui-form layui-form-pane">
+        <div class="layui-form-item">
+            <label for="name" class="layui-form-label">
+                <span class="x-red">*</span>标题
+            </label>
+            <div class="layui-input-block">
+                <input type="text" id="name" name="title" required="" lay-verify="required" autocomplete="off" class="layui-input" value="{$find.title}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="url" class="layui-form-label">
+                <span class="x-red">*</span>二维码
+            </label>
+            <div class="layui-input-inline">
+                <input id="imageinput" type="text" required="" lay-verify="required" name="image" class="layui-input" value="{$find.image}">
+            </div>
+            <div class="col-sm-10">
+                <div id="imageuploader">
+                    <!--用来存放item-->
+                    <div id="imagePicker">选择图片</div>
+                </div>
+            </div>
+        </div>
+        <div id="imageList" class="layui-form-item">
+            <label for="url" class="layui-form-label">
+                图片展示
+            </label>
+            <div class="layui-input-block">
+                <div class="layui-input-block">
+                    <div  class="uploader-list" style="overflow:hidden;"><div class="file-item thumbnail col-sm-2"><img id="imageListPic" style="max-width: 100px;max-height: 100px;" src="{$find.image}"></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="url" class="layui-form-label">
+                <span class="x-red">*</span>简介
+            </label>
+            <div class="layui-input-block">
+                <input type="text" id="url" name="desc" required="" lay-verify="required" autocomplete="off" class="layui-input" value="{$find.desc}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">显示状态</label>
+            <div class="layui-input-block">
+                <input type="radio" name="isshow" value="1" title="显示" {if condition="$find.isshow eq '1'"}checked=""{/if}>
+                <input type="radio" name="isshow" value="0" title="不显示" {if condition="$find.isshow eq '0'"}checked=""{/if}>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="order" class="layui-form-label">
+                排序
+            </label>
+            <div class="layui-input-block">
+                <input type="text" id="order" name="order" autocomplete="off" class="layui-input" value="{$find.order}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn" lay-submit="" lay-filter="add">修改</button>
+        </div>
+    </form>
+</div>
+<link rel="stylesheet" type="text/css" href="/static/vendor/uploader/webuploader.css" />
+<script type="text/javascript" src="/static/vendor/uploader/webuploader.js"></script>
+<script type="text/javascript" src="/static/vendor/uploader/upload.js"></script>
+<script>
+    $(function () {
+        var uploader = WebUploader.create({
+            auto: true,
+            swf: '/static/vendor/uploader/Uploader.swf',
+            server: '{:url('upload/image')}',
+            pick: '#imagePicker',
+            accept: {
+            title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+        },
+        fileNumLimit: 500,
+            duplicate:true
+    });
+        uploader.on( 'uploadSuccess', function( file, response ) {
+            var imgurl = response.imgurl;
+            $("#imageListPic").attr("src", imgurl);
+            $("#imageinput").val(imgurl);
+        });
+    })
+</script>
+</body>
+</html>

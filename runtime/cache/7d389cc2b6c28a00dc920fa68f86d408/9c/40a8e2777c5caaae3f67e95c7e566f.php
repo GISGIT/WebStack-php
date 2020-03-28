@@ -1,0 +1,4 @@
+<?php
+//000000003600
+ exit();?>
+think_serialize:a:10:{i:0;a:2:{s:7:"varname";s:7:"webname";s:5:"value";s:12:"演示站点";}i:1;a:2:{s:7:"varname";s:8:"web_sort";s:5:"value";s:12:"专业导航";}i:2;a:2:{s:7:"varname";s:6:"weburl";s:5:"value";s:7:"004.com";}i:3;a:2:{s:7:"varname";s:7:"logourl";s:5:"value";s:23:"/static/images/logo.png";}i:4;a:2:{s:7:"varname";s:9:"imagesurl";s:5:"value";s:8:"/upload/";}i:5;a:2:{s:7:"varname";s:4:"murl";s:5:"value";s:9:"m.004.com";}i:6;a:2:{s:7:"varname";s:11:"now_version";s:5:"value";s:5:"1.0.0";}i:7;a:2:{s:7:"varname";s:8:"mbanquan";s:5:"value";s:43:"Copyright © 2018-2020 All Rights Reserved.";}i:8;a:2:{s:7:"varname";s:8:"mlogourl";s:5:"value";s:23:"/static/images/logo.png";}i:9;a:2:{s:7:"varname";s:6:"hotkey";s:5:"value";s:21:"热搜词1,热搜词2";}}

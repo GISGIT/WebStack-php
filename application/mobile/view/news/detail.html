@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <meta name="applicable-device" content="mobile">
+    <meta name="format-detection" content="telephone=no">
+    <title>{$find.title}_{$sys.webname}</title>
+    <meta name="keywords" content="{$find.keywords}" />
+    <meta name="description" content="{$find.desc}" />
+    <link href="/static/mobile/css/common.css" rel="stylesheet">
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body class="mhome">
+{include file="common/header"}
+<style type="text/css">
+    .time
+    {
+        text-align: center;
+        color: #999;
+        padding-bottom: 0.5rem;
+    }
+    .content img
+    {
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+<div class="news">
+    <div class="news-tit">
+        <h3><i class="ico-bar-cat"></i><a href="//{$sys.murl}/news">资讯</a></h3>
+    </div>
+    <div class="news-content">
+        <div class="title">
+            <h2>{$find.title}</h2>
+            <p class="time">{$find['pubtime']|date="Y-m-d H:i:s"}</p>
+        </div>
+        <div class="content" id="contentText">
+            {$find.content|raw}
+        </div>
+    </div>
+</div>
+{include file="common/footer"}
+</body>
+</html>

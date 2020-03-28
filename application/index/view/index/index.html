@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{$seo.seo_title}</title>
+    <meta name="keywords" content="{$seo.seo_keywords}" />
+    <meta name="description" content="{$seo.seo_desc}" />
+    <link href="/static/css/common.css" rel="stylesheet">
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body>
+{include file="common/header"}
+<section class="main">
+    <section class="home">
+        <div class="top">
+            <form method="get" action="/search">
+                <input type="text" name="q" placeholder="搜网站" />
+                <input type="submit" value="" class="go" />
+            </form>
+            <h2><i class="ico-bar-vertical"></i>推荐导航</h2>
+        </div>
+        <div class="w3 clearfix">
+            <div class="fl box">
+                <div class="inner">
+                    <h3><a href="/kuaixun" class="fr" target="_blank">+</a><i class="ico-t1"></i>最新快讯</h3>
+                    <ul class="new" id="newList">
+                        {volist name="kxList" id="vo"}
+                        <li> <span class="fr">{$vo['pubtime']|date="Y-m-d"}</span> <a href="/kuaixun/{$vo.id}.html" target="_blank"> <i class="ico"></i>{$vo.title} </a> </li>
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+            <div class="fl box">
+                <div class="inner">
+                    <h3><a href="/news" target="_blank" class="fr">+</a><i class="ico-t3"></i>最新资讯</h3>
+                    <ul class="new" id="zixunList">
+                        {volist name="newsList" id="vo"}
+                        <li> <span class="fr">{$vo['pubtime']|date="Y-m-d"}</span> <a href="/news/{$vo.id}.html" target="_blank"> <i class="ico"></i>{$vo.title}  </a> </li>
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+            <div class="fl box last">
+                <div class="inner">
+                    <ul class="code">
+                        {volist name="contact" id="vo"}
+                        <li class="clearfix {if condition="$i eq '1'"} first{/if}">
+                            <div class="fl"><img src="{$vo.image}" width="82" height="82"></div>
+                            <div class="fr">
+                                <h4>{$vo.title}</h4>
+                                <p>{$vo.desc}</p>
+                            </div>
+                        </li>
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="items">
+            <ul class="w4 clearfix">
+                {volist name="recList" id="vo"}
+                <li class="fl box"> <a href="/detail/{$vo.id}.html" class="inner" target="_blank">
+                    <h3><i class="ico"></i><img src="{$vo.image}" width=32 height=32  onerror="this.src='/static/images/default.png'"/><span>{if condition="$vo.color neq ''"}<font color="{$vo.color}">{$vo.name}</font>{else}{$vo.name}{/if}</span></h3>
+                    <p>{$vo.desc}</p>
+                </a> </li>
+                {/volist}
+            </ul>
+        </div>
+    </section>
+    {volist name="cWrap" id="vo"}
+    <section class="home" id='cate-{$vo.id}'>
+        <h2><i class="ico-bar-vertical"></i>{$vo.name}</h2>
+        <div class="items">
+            <ul class="w4 clearfix">
+                {volist name="vo.sub" id="sub"}
+                <li class="fl box"> <a href="/detail/{$sub.id}.html" class="inner" target="_blank">
+                    <h3><i class="ico"></i><img src="{$sub.image}" width=32 height=32 onerror="this.src='/static/images/default.png'"/><span>{if condition="$sub.color neq ''"}<font color="{$sub.color}">{$sub.name}</font>{else}{$sub.name}{/if}</span></h3>
+                    <p>{$sub.desc}</p>
+                </a> </li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="more"> <a href="/category/{$vo.id}.html" target="_blank"><span>查看更多</span><i class="ico"></i></a> </div>
+    </section>
+    {/volist}
+    <section class="home">
+        <div class="flink">
+            <h2><i class="ico-bar-vertical"></i>友情链接</h2>
+            <p class="clearfix">
+                {volist name="frList" id="vo"}
+                <a href="{$vo.url}" target="_blank">{$vo.name}</a>
+                {/volist}
+            </p>
+        </div>
+    </section>
+</section>
+{include file="common/footer"}
+</body>
+</html>

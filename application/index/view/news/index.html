@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{$seo.seo_title} _ {$sys.webname}</title>
+    <meta name="keywords" content="{$seo.seo_keywords}" />
+    <meta name="description" content="{$seo.seo_desc}" />
+    <link href="/static/css/common.css" rel="stylesheet">
+    <script src="/static/js/jquery.js"></script>
+    <style type="text/css">
+        .alist
+        {
+            width: 925px;
+        }
+        .layout .side .inner {
+            margin: 11px 24px 24px 0;
+        }
+    </style>
+</head>
+<body>
+{include file="common/cheader"}
+<section class="main">
+    <section class="layout">
+        <section class="home">
+            <div class="top">
+                <form method="get" action="/search/news">
+                    <input type="text" name="q" placeholder="请输入关键词" value="{:input('q')}"/>
+                    <input type="submit" value="" class="go" />
+                </form>
+                <h2><i class="ico-bar-vertical"></i><a href="/news">资讯</a></h2>
+            </div>
+        </section>
+        <div class="alist fl">
+            {volist name="getList" id="vo"}
+            <div class="listul">
+                <div class="imgone">
+                    <div class="athumb"> <a target="_blank" href="/news/{$vo.id}.html"><img src="{$vo.image}" onerror="this.src='/static/images/nopic.jpg'" /></a> </div>
+                    <div class="adetail">
+                        <div class="atitle"><a target="_blank" href="/news/{$vo.id}.html">{$vo.title}</a></div>
+                        <div class="listinfo">
+                            <div class="ades"><a target="_blank" href="/news/{$vo.id}.html">{$vo.desc}…</a></div>
+                            <div class="dayinfo">
+                                <div class="fl">
+                                    <div class="listtime">{$vo['pubtime']|date="Y-m-d H:i:s"}</div>
+                                </div>
+                                <div class="fr">
+                                    <div class="hotlistfx fr mr10">
+                                        <div class="j-r-list-tool-ct fl">
+                                            <div class="j-r-list-tool-ct-fx fl">
+                                                <div class="bdsharebuttonbox" data-title="{$vo.title}" data-desc="{$vo.desc}…" data-pic="//{$sys.weburl}/{$vo.image}" data-url="//{$sys.weburl}/news/{$vo.id}.html" data-id="23"> <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a> <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a> <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a> <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a> <a href="#" class="bds_more" data-cmd="more"></a> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/volist}
+            <div style="clear: both;"></div>
+            <div class="page">
+                {$getList|raw}
+            </div>
+        </div>
+        <div class="side">
+            <div class="inner">
+                <h3><i class="ico ico-hot"></i> 热门推荐</h3>
+                <ul class="hotarticle">
+                    {volist name="hotList" id="vo"}
+                    <li> <a target="_blank" href="/news/{$vo.id}.html"> <img src="{$vo.image}" onerror="this.src='/static/images/nopic.jpg'">
+                        <p>{$vo.title}</p>
+                    </a> </li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+    </section>
+</section>
+<script type="text/javascript">
+    //百度分享
+    var shareurl = "";
+    var sharedesc="";
+    var sharepic="";
+    var sharetitle="";
+    var articleid=0;
+    $(".bdsharebuttonbox a").mouseover(function () {
+        shareurl = $(this).parents(".bdsharebuttonbox").attr("data-url");
+        sharedesc=$(this).parents(".bdsharebuttonbox").attr("data-desc");
+        sharepic=$(this).parents(".bdsharebuttonbox").attr("data-pic");
+        sharetitle=$(this).parents(".bdsharebuttonbox").attr("data-title");
+        articleid=$(this).parents(".bdsharebuttonbox").attr("data-id");
+    });
+    function SetShare(cmd, config) {
+        if (shareurl) {
+            config.bdUrl = shareurl;
+        }
+        if(sharedesc){
+            config.bdDesc = sharedesc;
+        }
+        if(sharepic){
+            config.bdPic = sharepic;
+        }
+        if(sharetitle){
+            config.bdText = sharetitle;
+        }
+        return config;
+    }
+    window._bd_share_config = {"common": {onBeforeClick:SetShare,"bdSnsKey":{},"bdMini":"2","bdMiniList":false,"bdStyle":"0","bdSize":"24"}, "share": {}}
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+{include file="common/footer"}
+</body>
+</html>

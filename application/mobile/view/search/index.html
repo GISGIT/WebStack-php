@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <meta name="applicable-device" content="mobile">
+    <meta name="format-detection" content="telephone=no">
+    <title>{$seo.seo_title} - {$sys.weburl}</title>
+    <meta name="keywords" content="{$seo.seo_keywords}" />
+    <meta name="description" content="{$seo.seo_desc}" />
+    <link href="/static/mobile/css/common.css" rel="stylesheet">
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body class="mhome">
+{include file="common/header"}
+
+<div class="result">
+    <div class="result-form">
+        <form method="get" action="{:url('search/index')}">
+            <input id="query" type="text" name="q" placeholder="搜索" value="{:input('q')}" />
+            <button type="submit" class="go" style="border:none;"></button>
+        </form>
+    </div>
+    <div class="news-con">
+        <div class="col" id="exchange">
+            <div class="col-tit">
+                <h3>{:input('q')}</h3>
+                <div class="ico-bar-horizontal"></div>
+            </div>
+            <div class="col-con clearfix">
+                <ul>
+                    {volist name="getList" id="vo"}
+                    <li> <a href="{:url('detail/'.$vo.id)}">
+                        <div class="col-con-tit"> <img src="{$vo.image}" /> <strong>{$vo.name}</strong></div>
+                        <div class="col-con-text">
+                            <p><br/>{$vo.desc}</p>
+                        </div>
+                    </a> </li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="page">
+                {$getList|raw}
+            </div>
+        </div>
+    </div>
+</div>
+{include file="common/footer"}
+</body>
+</html>

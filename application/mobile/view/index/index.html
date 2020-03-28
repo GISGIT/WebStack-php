@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <meta name="applicable-device" content="mobile">
+    <meta name="format-detection" content="telephone=no">
+    <title>{$seo.seo_title}</title>
+    <meta name="keywords" content="{$seo.seo_keywords}" />
+    <meta name="description" content="{$seo.seo_desc}" />
+    <link href="/static/mobile/css/common.css" rel="stylesheet">
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body class="mhome">
+{include file="common/header"}
+<div class="col" id="m0" style="padding-top:18px">
+    <div class="col-tit">
+        <h3>推荐导航</h3>
+        <div class="ico-bar-horizontal"></div>
+    </div>
+    <div class="col-con">
+        <ul class="first clearfix">
+            <li> <a href="/kuaixun/" class="t1"> <img src="/static/mobile/images/t1.png"> <strong>最新快讯</strong> </a> </li>
+            <li> <a href="/wechat/" class="t2"> <img src="/static/mobile/images/t2.png"> <strong>官方微信</strong> </a> </li>
+            <li> <a href="/news/" class="t3"> <img src="/static/mobile/images/t3.png"> <strong>最新资讯</strong> </a> </li>
+        </ul>
+        <ul class="clearfix">
+            {volist name="recList" id="vo"}
+            <li> <a href="{:url('detail/'.$vo.id)}">
+                <div class="col-con-tit">
+                    <div><img src="{$vo.image}" onerror="this.src='/static/images/default.png'"/> <strong>{if condition="$vo.color neq ''"}<font color="{$vo.color}">{$vo.name}</font>{else}{$vo.name}{/if}</strong></div>
+                </div>
+                <div class="col-con-text">
+                    <p>{$vo.desc}</p>
+                </div>
+            </a> </li>
+            {/volist}
+        </ul>
+    </div>
+</div>
+{volist name="cWrap" id="vo"}
+<div class="col" id="nge">
+    <div class="col-tit">
+        <h3>{$vo.name}</h3>
+        <div class="ico-bar-horizontal"></div>
+    </div>
+    <div class="col-con clearfix">
+        <ul>
+            {volist name="vo.sub" id="sub"}
+            <li> <a href="{:url('detail/'.$sub.id)}">
+                <div class="col-con-tit">
+                    <div><img src="{$sub.image}"  onerror="this.src='/static/images/default.png'"/> <strong>{if condition="$sub.color neq ''"}<font color="{$sub.color}">{$sub.name}</font>{else}{$sub.name}{/if}</strong></div>
+                </div>
+                <div class="col-con-text">
+                    <p>{$sub.desc}</p>
+                </div>
+            </a> </li>
+            {/volist}
+        </ul>
+    </div>
+    <div class="col-bottom"> <a href="{:url('category/'.$vo.id)}"><span>查看更多<i class="ico-col-more"></i></span></a> </div>
+</div>
+{/volist}
+</div>
+{include file="common/footer"}
+</body>
+</html>

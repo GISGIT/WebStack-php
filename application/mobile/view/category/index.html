@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <meta name="applicable-device" content="mobile">
+    <meta name="format-detection" content="telephone=no">
+    <title>{$find.seo_title} _ {$sys.webname}</title>
+    <meta name="keywords" content="{$find.seo_keywords}" />
+    <meta name="description" content="{$find.seo_desc}" />
+    <link href="/static/mobile/css/common.css" rel="stylesheet">
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body class="mhome">
+{include file="common/header"}
+<div class="col">
+    <div class="col-tit">
+        <h3>{$find.name}</h3>
+        <div class="ico-bar-horizontal"></div>
+    </div>
+    <div class="col-con clearfix">
+        <ul>
+            {volist name="getList" id="vo"}
+            <li> <a href="{:url('detail/'.$vo.id)}">
+                <div class="col-con-tit">
+                    <div><img src="{$vo.image}" onerror="this.src='/static/images/default.png'"/> <strong>{if condition="$vo.color neq ''"}<font color="{$vo.color}">{$vo.name}</font>{else}{$vo.name}{/if}</strong></div>
+                </div>
+                <div class="col-con-text">
+                    <p>{$vo.desc}</p>
+                </div>
+            </a> </li>
+            {/volist}
+        </ul>
+    </div>
+    <div class="page">
+        {$getList|raw}
+    </div>
+</div>
+<style type="text/css">
+    .col-con {
+        max-height: 800px;
+    }
+</style>
+{include file="common/footer"}
+</body>
+</html>

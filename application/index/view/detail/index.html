@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{$find.name}_{$sys.webname}</title>
+    <meta name="keywords" content="{$find.keywords}" />
+    <meta name="description" content="{$find.desc}" />
+    <link href="/static/css/common.css" rel="stylesheet">
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body>
+{include file="common/header"}
+<section class="main">
+    <section class="wrap">
+        <div class="box base">
+            <div class="inner">
+                <div class="banner">
+                    <div class="bg">
+                        <div class="a" style="background-image:url('{$find.bgimg}');"></div>
+                        <div class="b"></div>
+                    </div>
+                    <div class="logo"> <img src="{$find.image}"  onerror="this.src='/static/images/default.png'"/> </div>
+                    <h2>{$find.name}</h2>
+                </div>
+                <div class="content">
+                    <h3>网址</h3>
+                    <ul class="w3 clearfix">
+                        {volist name="parameter" id="vo"}
+                        <li><em>{$vo.ptitle}：</em>{if condition="$vo.purl neq ''"}<a href="{$vo.purl}" target="_blank" rel="nofollow">{$vo.pname}</a>{else}{$vo.pname}{/if}</li>
+                        {/volist}
+                    </ul>
+                </div>
+                <div class="content02">
+                    <h3>描述</h3>
+                    {$find.info|raw}
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+{include file="common/footer"}
+</body>
+</html>

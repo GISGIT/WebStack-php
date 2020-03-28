@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <meta name="applicable-device" content="mobile">
+    <meta name="format-detection" content="telephone=no">
+    <title>{$seo.seo_title} - {$sys.webname}</title>
+    <meta name="keywords" content="{$seo.seo_keywords}">
+    <meta name="description" content="{$seo.seo_desc}">
+    <link href="/static/mobile/css/common.css" rel="stylesheet">
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body class="mhome">
+{include file="common/header"}
+<div class="wechat">
+    <ul>
+        {volist name="getList" id="vo"}
+        <li class="clearfix">
+            <div class="fl"><img src="{$vo.image}"></div>
+            <div class="fr">
+                <h4>{$vo.title}</h4>
+                <p>{$vo.desc}</p>
+            </div>
+        </li>
+        {/volist}
+    </ul>
+</div>
+{include file="common/footer"}
+</body>
+</html>

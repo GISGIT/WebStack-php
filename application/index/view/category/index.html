@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{$find.seo_title} _ {$sys.webname}</title>
+    <meta name="keywords" content="{$find.seo_keywords}" />
+    <meta name="description" content="{$find.seo_desc}" />
+    <link href="/static/css/common.css" rel="stylesheet">
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body>
+{include file="common/header"}
+<section class="main">
+    <section class="home">
+        <h2><i class="ico-bar-vertical"></i>{$find.name}</h2>
+        <div class="items">
+            <ul class="w4 clearfix">
+                {volist name="getList" id="vo"}
+                <li class="fl box"> <a href="/detail/{$vo.id}.html" class="inner">
+                    <h3><i class="ico"></i><img src="{$vo.image}" width="32" height="32"  onerror="this.src='/static/images/default.png'"/><span>{if condition="$vo.color neq ''"}<font color="{$vo.color}">{$vo.name}</font>{else}{$vo.name}{/if}</span></h3>
+                    <p>{$vo.desc}</p>
+                </a> </li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="page">
+            {$getList|raw}
+        </div>
+    </section>
+</section>
+{include file="common/footer"}
+</body>
+</html>

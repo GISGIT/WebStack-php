@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <meta name="applicable-device" content="mobile">
+    <meta name="format-detection" content="telephone=no">
+    <title>{$seo.seo_title} _ {$sys.webname}</title>
+    <meta name="keywords" content="{$seo.seo_keywords}" />
+    <meta name="description" content="{$seo.seo_desc}" />
+    <link href="/static/mobile/css/common.css" rel="stylesheet">
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body class="mhome">
+{include file="common/header"}
+<div class="news">
+    <div class="news-tit">
+        <form id="search_form" method="get" action="{:url('search/news')}">
+            <input id="query" type="text" name="q" placeholder="搜索资讯…" value="{:input('q')}" />
+            <button type="submit" class="go" style="border:none;"></button>
+        </form>
+        <h3><i class="ico-bar-cat"></i><a href="//{$sys.murl}/news">资讯</a></h3>
+    </div>
+    <div class="alist clearfix">
+        {volist name="getList" id="vo"}
+        <div class="listul"> <a href="{:url('news/'.$vo.id)}"> <img src="{$vo.image}" onerror="this.src='/static/images/nopic.jpg'">
+            <p class="atitle">{$vo.title}</p>
+            <p class="atime">{$vo['pubtime']|date="Y-m-d"}</p>
+        </a> </div>
+        {/volist}
+    </div>
+    <div class="page">
+        {$getList|raw}
+    </div>
+</div>
+{include file="common/footer"}
+</body>
+</html>

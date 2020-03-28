@@ -1,0 +1,22 @@
+<div class="header">
+    <h1 class="logo"> <a href="//{$sys.murl}"><img src="{$sys.mlogourl}" alt="{$sys.weburl}" /></a> </h1>
+    <div class="top-sear"> <a href="javascript:void(0);"><i class="ico-nav-sear"></i></a> </div>
+    <div class="top-menu"> <a href="javascript:void(0);"><i class="ico-nav-menu"></i></a> </div>
+</div>
+<div class="sear-wrap">
+    <form method="get" action="{:url('search/index')}">
+        <input type="text" name="q" placeholder="搜网址" value="" />
+        <input type="submit" value="" class="go" />
+    </form>
+    <div class="bg"></div>
+</div>
+<div class="nav-wrap" style="overflow: auto;">
+    <div class="nav-list">
+        <ul>
+            <li><a href="{$sys.murl}">网站首页</a></li>
+            {volist name="cateList" id="vo"}
+            <li><a href="{:url('category/'.$vo.id)}">{$vo.name}</a></li>
+            {/volist}
+        </ul>
+    </div>
+</div>

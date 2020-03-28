@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+{include file="common/head"}
+<body>
+<div class="x-body">
+    <form action="" method="post" class="layui-form layui-form-pane">
+        <div class="layui-form-item">
+            <label for="name" class="layui-form-label">
+                <span class="x-red">*</span>网站名称
+            </label>
+            <div class="layui-input-block">
+                <input type="text" id="name" name="name" required="" lay-verify="required" autocomplete="off" class="layui-input" value="{$find.name}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="url" class="layui-form-label">
+                <span class="x-red">*</span>网站链接
+            </label>
+            <div class="layui-input-block">
+                <input type="text" id="url" name="url" required="" lay-verify="required" autocomplete="off" class="layui-input" value="{$find.url}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">显示状态</label>
+            <div class="layui-input-block">
+                <input type="radio" name="isshow" value="1" title="显示" {if condition="$find.isshow eq '1'"}checked=""{/if}>
+                <input type="radio" name="isshow" value="0" title="不显示" {if condition="$find.isshow eq '0'"}checked=""{/if}>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="order" class="layui-form-label">
+                排序
+            </label>
+            <div class="layui-input-block">
+                <input type="text" id="order" name="order" autocomplete="off" class="layui-input" value="{$find.order}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="add">修改</button>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['form','layer'], function(){
+        $ = layui.jquery;
+        var form = layui.form
+            ,layer = layui.layer;
+        //自定义验证规则
+        form.verify({
+            nikename: function(value){
+                if(value.length < 5){
+                    return '昵称至少得5个字符啊';
+                }
+            }
+            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,repass: function(value){
+                if($('#L_pass').val()!=$('#L_repass').val()){
+                    return '两次密码不一致';
+                }
+            }
+        });
+    });
+</script>
+</body>
+
+</html>

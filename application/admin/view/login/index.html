@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+{include file="common/head"}
+<body class="login-bg">
+<div class="login layui-anim layui-anim-up">
+    <div class="message">后台管理登录</div>
+    <div id="darkbannerwrap"></div>
+    <form method="post" class="layui-form" >
+        <input type="hidden" name="__token__" value="{$Request.token}" />
+        <input name="adminname" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
+        <hr class="hr15">
+        <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
+        <hr class="hr15">
+        <div class="layui-form-item">
+            <input style="float:left;width: 60%;height: 50px;" name="captcha" lay-verify="required" placeholder="验证码"  type="text" class="layui-input"><img style="float:left;width: 40%;height: 50px;" src="{:captcha_src()}" alt="captcha" onClick="this.src='{:captcha_src()}?'+Math.random();" />
+        </div>
+        <hr class="hr15">
+        <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+        <hr class="hr20" >
+    </form>
+</div>
+</body>
+</html>

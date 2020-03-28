@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{$find.title}_{$sys.webname}</title>
+    <meta name="keywords" content="{$find.keywords}" />
+    <meta name="description" content="{$find.info}" />
+    <link href="/static/css/common.css" rel="stylesheet">
+    <script src="/static/js/jquery.js"></script>
+    <style type="text/css">.time {text-align: center;color: #999;padding-bottom: 5px;}</style>
+</head>
+<body>
+{include file="common/cheader"}
+<section class="main">
+    <section class="layout">
+        <div class="box">
+            <div class="inner">
+                <div class="title">
+                    <h3><i class="ico-t1"></i><a href="/kuaixun">最新快讯</a></h3>
+                </div>
+                <div class="news-tit">
+                    <h2>{$find.title}</h2>
+                    <p class="time">{$find['pubtime']|date="Y-m-d H:i:s"}</p>
+                </div>
+                <div class="news-con">
+                    {$find.info}
+                </div>
+            </div>
+        </div>
+        <div class="side">
+            <div class="inner">
+                <h3><i class="ico ico-hot"></i> 热门推荐</h3>
+                <ul>
+                    {volist name="hotList" id="vo"}
+                    <li>
+                        <div class="fl"><i class="ico"></i></div>
+                        <div class="fr"> <a href="/kuaixun/{$vo.id}.html" target="_blank">{$vo.info}</a>
+                            <div class="hits">{$vo['pubtime']|date="Y-m-d"}</div>
+                        </div>
+                    </li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+    </section>
+</section>
+{include file="common/footer"}
+</body>
+</html>

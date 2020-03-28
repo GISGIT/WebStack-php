@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+{include file="common/head"}
+<body>
+<div class="x-body">
+    <blockquote class="layui-elem-quote">欢迎管理员：<span class="x-red">{:session('adminname')}</span>！当前时间:<?php echo (date("Y-m-d H:i:s",time()));?></blockquote>
+    <fieldset class="layui-elem-field">
+        <legend>数据统计</legend>
+        <div class="layui-field-box">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <div class="layui-carousel x-admin-carousel x-admin-backlog" lay-anim="" lay-indicator="inside" lay-arrow="none" style="width: 100%; height: 90px;">
+                            <div carousel-item="">
+                                <ul class="layui-row layui-col-space10 layui-this">
+                                    <li class="layui-col-xs2">
+                                        <a href="javascript:;" class="x-admin-backlog-body">
+                                            <h3>网址数</h3>
+                                            <p><cite>{$data['websitecount']}</cite></p>
+                                        </a>
+                                    </li>
+                                    <li class="layui-col-xs2">
+                                        <a href="javascript:;" class="x-admin-backlog-body">
+                                            <h3>分类数</h3>
+                                            <p><cite>{$data['catecount']}</cite></p>
+                                        </a>
+                                    </li>
+                                    <li class="layui-col-xs2">
+                                        <a href="javascript:;" class="x-admin-backlog-body">
+                                            <h3>快讯数</h3>
+                                            <p><cite>{$data['kuaixuncount']}</cite></p>
+                                        </a>
+                                    </li>
+                                    <li class="layui-col-xs2">
+                                        <a href="javascript:;" class="x-admin-backlog-body">
+                                            <h3>资讯数</h3>
+                                            <p><cite>{$data['newscount']}</cite></p>
+                                        </a>
+                                    </li>
+                                    <li class="layui-col-xs2">
+                                        <a href="javascript:;" class="x-admin-backlog-body">
+                                            <h3>联系方式数量</h3>
+                                            <p><cite>{$data['contactcount']}</cite></p>
+                                        </a>
+                                    </li>
+                                    <li class="layui-col-xs2">
+                                        <a href="javascript:;" class="x-admin-backlog-body">
+                                            <h3>友链数</h3>
+                                            <p><cite>{$data['frcount']}</cite></p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="layui-elem-field">
+        <legend>系统信息</legend>
+        <div class="layui-field-box">
+            <table class="layui-table">
+                <tbody>
+                <tr>
+                    <th>当前版本</th>
+                    <td>{$sys.now_version}</td></tr>
+                <tr>
+                    <th>服务器地址</th>
+                    <td><?php echo $_SERVER['SERVER_NAME'];?></td></tr>
+                <tr>
+                    <th>服务器IP</th>
+                    <td><?php echo GetHostByName($_SERVER['SERVER_NAME']);?></td></tr>
+                <tr>
+                    <th>操作系统</th>
+                    <td><?php echo php_uname('s');?></td></tr>
+                <tr>
+                    <th>PHP版本</th>
+                    <td><?php echo phpversion();?></td></tr>
+                <tr>
+                    <th>PHP运行方式</th>
+                    <td><?php echo php_sapi_name();?></td></tr>
+                <tr>
+                    <th>MYSQL版本</th>
+                    <td>{$mysql}</td></tr>
+                <tr>
+                    <th>ThinkPHP</th>
+                    <td>{$Think.version}</td></tr>
+                <tr>
+                    <th>上传附件限制</th>
+                    <td><?php echo ini_get("file_uploads") ? ini_get("upload_max_filesize") : "Disabled"; ?></td></tr>
+                <tr>
+                    <th>脚本最大执行时间</th>
+                    <td><?php echo ini_get("max_execution_time"); ?>s</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</div>
+</body>
+</html>

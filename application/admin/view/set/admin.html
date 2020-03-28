@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+{include file="common/head"}
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">网站设置</a>
+        <a>
+          <cite>管理员设置</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <form action="" method="post" class="layui-form layui-form-pane">
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                管理员账号
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="adminname" autocomplete="off" class="layui-input" value="{$admin.adminname}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>原始密码
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="password" required="" lay-verify="required" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                新密码
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="npassword" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                确认新密码
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="rnpassword" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn" lay-submit="" lay-filter="add">修改</button>
+        </div>
+    </form>
+</div>
+
+</body>
+
+</html>

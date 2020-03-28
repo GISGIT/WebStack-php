@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+{include file="common/head"}
+<body>
+<div class="x-body">
+    <form action="" method="post" class="layui-form layui-form-pane">
+        <div class="layui-form-item">
+            <label for="name" class="layui-form-label">
+                <span class="x-red">*</span>分类名称
+            </label>
+            <div class="layui-input-block">
+                <input type="text" id="name" name="name" required="" lay-verify="required" autocomplete="off" class="layui-input" value="{$find.name}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">显示状态</label>
+            <div class="layui-input-block">
+                <input type="radio" name="isshow" value="1" title="显示" {if condition="$find.isshow eq '1'"}checked=""{/if}>
+                <input type="radio" name="isshow" value="0" title="不显示" {if condition="$find.isshow eq '0'"}checked=""{/if}>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                SEO标题
+            </label>
+            <div class="layui-input-block">
+                <input type="text" id="seo_title" name="seo_title" autocomplete="off" class="layui-input" value="{$find.seo_title}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                SEO关键词
+            </label>
+            <div class="layui-input-block">
+                <input type="text" id="seo_keywords" name="seo_keywords" autocomplete="off" class="layui-input" value="{$find.seo_keywords}">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label for="seo_desc" class="layui-form-label">
+                SEO描述
+            </label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" id="seo_desc" name="seo_desc" class="layui-textarea" value="{$find.seo_desc}"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="order" class="layui-form-label">
+                排序
+            </label>
+            <div class="layui-input-block">
+                <input type="text" id="order" name="order" autocomplete="off" class="layui-input" value="{$find.order}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn" lay-submit="" lay-filter="add">修改</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

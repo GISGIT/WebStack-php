@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{$seo.seo_title} _ {$sys.webname}</title>
+    <meta name="keywords" content="{$seo.seo_keywords}" />
+    <meta name="description" content="{$seo.seo_desc}" />
+    <link href="/static/css/common.css" rel="stylesheet">
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body>
+{include file="common/cheader"}
+<section class="main">
+    <section class="layout">
+        <div class="box">
+            <div class="inner">
+                <div class="title">
+                    <form id="search_form" method="get" action="/search/kuaixun">
+                        <input id="query" type="text" name="q" placeholder="搜索快讯…" value="{:input('q')}" />
+                        <input type="submit" value="" class="go" style="border:none;" />
+                    </form>
+                    <h3><i class="ico-t1"></i><a href="/kuaixun">最新快讯</a></h3>
+                </div>
+                <div class="news">
+                    <div class="news-date">
+                        {volist name="getList" id="vo"}
+                        {if condition="$i eq '1'"}
+                        <h2 class="first active"> <a href="javascript:void(0)"> <strong>{$vo['pubtime']|date="m-d"}</strong><span>{$vo['pubtime']|date="Y"}</span> </a> </h2>
+                        <ul class="first">{/if}
+                            <li>
+                                <h3>{$vo['pubtime']|date="H:i"}</h3>
+                                <dl>
+                                    <dd>
+                                        <a href="/kuaixun/{$vo.id}.html" target="_blank"><span class="part">{$vo.info}[详情]</span>
+                                        </a>
+                                    </dd>
+                                </dl>
+                            </li>
+                           {/volist}
+                        </ul>
+                    </div>
+                </div>
+                <div class="page">
+                    {$getList|raw}
+                </div>
+            </div>
+        </div>
+        <div class="side">
+            <div class="inner">
+                <h3><i class="ico ico-hot"></i> 热门推荐</h3>
+                <ul>
+                    {volist name="hotList" id="vo"}
+                    <li>
+                        <div class="fl"><i class="ico"></i></div>
+                        <div class="fr"> <a href="/kuaixun/{$vo.id}.html" target="_blank">{$vo.info}</a>
+                            <div class="hits">{$vo['pubtime']|date="Y-m-d"}</div>
+                        </div>
+                    </li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+    </section>
+</section>
+{include file="common/footer"}
+</body>
+</html>
